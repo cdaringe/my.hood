@@ -1,0 +1,9 @@
+(library
+ (name game)
+ (libraries containers)
+ (modules game))
+
+(test
+ (name tests)
+ (libraries alcotest game)
+ (modules tests))
