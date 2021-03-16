@@ -1,9 +1,9 @@
 (library
- (name game)
+ (name hood)
  (libraries containers)
- (modules board common game house street))
+ (modules board common hood house street))
 
 (test
  (name tests)
- (libraries alcotest game)
+ (libraries alcotest hood)
  (modules tests))

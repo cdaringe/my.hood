@@ -1,6 +1,6 @@
 open Common
 let handle_assignment ({ street_num; house_num; value } : home_assignment)
-    (b : board) =
+    (board' : board) =
   let maybe_update_house i (h : house) =
     if i == house_num then
       (* if Option.is_some h.value then Error HouseAlreadyFilled *)
@@ -14,11 +14,12 @@ let handle_assignment ({ street_num; house_num; value } : home_assignment)
         : house)
     else h
   in
-  let maybe_update_street street_num' street : establishment =
-    if street_num' == street_num then Array.mapi maybe_update_house street
-    else street
+  let maybe_update_street street_num' street': street =
+    if street_num' == street_num then
+      { street' with homes = Array.mapi maybe_update_house street'.homes }
+    else street'
   in
-  Ok { b with streets = Array.mapi maybe_update_street b.streets }
+  Ok { board' with streets = Array.mapi maybe_update_street board'.streets }
 
 let handle_effect (_e : effect) (b : board) = Ok b
 

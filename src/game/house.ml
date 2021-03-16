@@ -6,5 +6,5 @@ let empty () : t =
   in
   h
 
-let with_pool h = { h with has_pool = true }
+let with_pool (h:t) : t = { h with has_pool = true }
 

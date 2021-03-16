@@ -11,7 +11,7 @@ let create_establishment len pool_house_nums =
   let estab = Array.init len (fun _ -> House.empty ()) in
   update_with_pools pool_house_nums estab
 
-let make street_id : street =
+let make street_id : t =
   let len, pool_idxs =
     match street_id with
     | 0 -> (10, [| 2; 6; 7 |])
