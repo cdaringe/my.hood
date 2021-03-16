@@ -1,4 +1,5 @@
 open Common
+
 let handle_assignment ({ street_num; house_num; value } : home_assignment)
     (board' : board) =
   let maybe_update_house i (h : house) =
@@ -14,7 +15,7 @@ let handle_assignment ({ street_num; house_num; value } : home_assignment)
         : house)
     else h
   in
-  let maybe_update_street street_num' street': street =
+  let maybe_update_street street_num' street' : street =
     if street_num' == street_num then
       { street' with homes = Array.mapi maybe_update_house street'.homes }
     else street'

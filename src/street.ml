@@ -1,5 +1,5 @@
-
 type t = Common.street
+
 let update_with_pools pool_house_nums establishment' : Common.establishment =
   let maybe_with_pool i house =
     if Array.exists (Int.equal i) pool_house_nums then House.with_pool house

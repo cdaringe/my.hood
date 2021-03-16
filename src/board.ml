@@ -1,6 +1,7 @@
 open Common
 
 type t = Common.board
+
 let ( >>= ) = Result.bind
 
 let empty () : t =
@@ -13,6 +14,7 @@ let empty () : t =
     }
   in
   b
+
 (*
 let get_street (board:Common.board) street_num =
   try Array.get board.streets street_num |> Result.ok

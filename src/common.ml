@@ -1,13 +1,16 @@
-type house  = {
+type house = {
   num : int option;
   has_pool : bool;
   is_bis : bool;
   is_bound_to_deal : bool;
 }
+
 type establishment = house array
 
 type establishments = establishment array
+
 type street = { park_count : int; homes : house array; fences : int list }
+
 type board = {
   streets : street array;
   real_estate_investment_counts : int array;

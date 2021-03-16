@@ -1,9 +1,0 @@
-(library
- (name hood)
- (libraries containers)
- (modules board common hood house street))
-
-(test
- (name tests)
- (libraries alcotest hood)
- (modules tests))
