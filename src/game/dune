@@ -1,7 +1,7 @@
 (library
  (name game)
  (libraries containers)
- (modules game))
+ (modules board common game house street))
 
 (test
  (name tests)
