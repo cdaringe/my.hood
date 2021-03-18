@@ -1,1 +1,5 @@
-(test (name test) (libraries alcotest hood))
+; https://dune.readthedocs.io/en/stable/dune-files.html#tests
+
+(tests
+ (names board game)
+ (libraries alcotest hood))

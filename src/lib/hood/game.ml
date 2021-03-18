@@ -1,5 +1,4 @@
 open Common
-
 let handle_assignment ({ street_num; house_num; value } : home_assignment)
     (board' : board) =
   let maybe_update_house i (h : house) =
@@ -32,3 +31,6 @@ let act board _plans ({ home_assignment; effect } : action) :
   | Some a, None -> handle_assignment a board
   | None, Some e -> handle_effect e board
   | Some a, Some e -> handle_assignment a board >>= handle_effect e
+
+let empty ~num_players = 0
+

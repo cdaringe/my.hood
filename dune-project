@@ -7,12 +7,14 @@
 
 (package
  (name hood)
- (synopsis "a fun game")
- (description "best game")
+ (synopsis "A super fun game")
+ (description "Best game")
  (depends
-  (alcotest (and :dev (= 1.3.0)))
-  (dune (and :dev (> 1.5)))
+  (alcotest :dev)
+  (containers (>= 3))
+  (dune (or :build :dev))
   (ocaml (>= 4.11.0))
-  (ocaml-lsp-server (and :dev (> 1.5) (< 2.0)))
+  (ocaml-lsp-server :dev)
+  (ocamlformat :dev)
  )
 )

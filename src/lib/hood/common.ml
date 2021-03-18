@@ -7,8 +7,6 @@ type house = {
 
 type establishment = house array
 
-type establishments = establishment array
-
 type street = { park_count : int; homes : house array; fences : int list }
 
 type board = {
@@ -16,6 +14,8 @@ type board = {
   real_estate_investment_counts : int array;
   bpr : int;
   temp_agency_usage_count : int;
+  (* tuple: (plan index, 0 for first claimant,  n-1 for nth claimant *)
+  estate_plan_claims: (int * int) list;
 }
 
 type fence = { street_num : int; house_num : int }
@@ -41,3 +41,20 @@ type game_error =
   | InvalidHouseIndex
   | HouseAlreadyFilled
   | InvalidAction of string
+
+type card = {
+  num: int;
+  effect: effect;
+}
+type deck = card list
+
+type estate_plan = {
+  claimaint_count: int;
+  establishments: establishment list;
+}
+
+type game = {
+  boards: board list;
+  decks: deck list;
+  estate_plans: estate_plan list;
+}
