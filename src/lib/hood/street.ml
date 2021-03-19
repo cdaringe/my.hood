@@ -25,4 +25,16 @@ let make street_id : t =
 
 let get_init () = Array.map make [| 0; 1; 2 |]
 
+let with_fence (fence : fence) street =
+  let fence_idx =
+    match
+      ( fence.house_num,
+        CCList.find_opt (Int.equal fence.house_num) street.fences )
+    with
+    | 0, _ -> raise (Game_error InvalidFenceIndex)
+    | _, None -> fence.house_num
+    | _ -> raise (Game_error FenceAlreadyExists)
+  in
+  { street with fences = fence_idx :: street.fences }
+
 let check_num = in_range_or 0 2 (Game_error InvalidStreetIndex)

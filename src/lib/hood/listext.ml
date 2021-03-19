@@ -17,3 +17,5 @@ let shuffle d =
 let rotate ?(n = 1) = function
   | [] -> []
   | l -> CCList.(last n l @ take (length l - n) l)
+
+let replace l pos a = List.mapi (fun i x -> if i = pos then a else x) l

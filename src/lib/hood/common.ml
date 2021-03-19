@@ -42,6 +42,8 @@ type game_error =
   | InvalidHouseIndex
   | HouseAlreadyFilled
   | InvalidHouseNumber
+  | InvalidFenceIndex
+  | FenceAlreadyExists
   | InvalidAction of string
 
 exception Game_error of game_error
@@ -53,6 +55,7 @@ type deck = card list
 type estate_plan = { claimaint_count : int; establishments : int list }
 
 type game = {
+  is_complete : bool;
   boards : board list;
   decks : deck list;
   estate_plans : estate_plan list;

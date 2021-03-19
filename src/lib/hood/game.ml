@@ -38,7 +38,19 @@ let handle_assignment a game player_id =
   with_board game player_id
     { board with streets = Array.mapi maybe_update_street board.streets }
 
-let handle_effect (_e : effect) (game : game) _player_id = game
+let handle_effect (eff : effect) (game : game) player_id =
+  let board = List.nth game.boards player_id in
+  let board' =
+    match eff with
+    | PlaceFence fence -> Board.with_fence board fence
+    | InvestInEstablishmentSize size -> Board.invest board size
+    | UseTempAgency _num_adjust -> board
+    | Bis -> board
+    | DevelopPark -> board
+    | DevelopPool -> board
+    | BPR -> board
+  in
+  { game with boards = Listext.replace game.boards player_id board' }
 
 type t_act = game -> int -> action -> (game, game_error) result
 
@@ -58,9 +70,21 @@ let act : t_act =
 let create ?(num_players = 2) () =
   let open CCList in
   {
+    is_complete = false;
     boards = init num_players (fun _ -> Board.empty ());
     decks = sublists_of_len 27 @@ Deck.create_random ();
     estate_plans = Plans.create_random ();
   }
 
-let tick game = { game with decks = List.map Listext.rotate game.decks }
+let test_bpr_gte_3 b = b.bpr >= 3
+
+let test_is_complete game =
+  if game.is_complete then true
+  else List.find_opt test_bpr_gte_3 game.boards |> Option.is_some
+
+let tick game =
+  {
+    game with
+    is_complete = test_is_complete game;
+    decks = List.map Listext.rotate game.decks;
+  }
