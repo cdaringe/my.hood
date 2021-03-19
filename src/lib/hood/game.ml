@@ -14,15 +14,16 @@ let with_board game player_id board : game =
         game.boards;
   }
 
-let handle_assignment ({ street_num; house_num; value } : home_assignment) game
-    player_id =
+let handle_assignment a game player_id =
   let board = List.nth game.boards player_id in
+  let house_num = House.check_num a.house_num in
+  let street_num = Street.check_num a.street_num in
   let maybe_update_house i (h : house) =
     if i = house_num then
       if Option.is_some h.num then raise (Game_error HouseAlreadyFilled)
       else
         {
-          num = Some value;
+          num = Some a.value;
           has_pool = false;
           is_bis = false;
           is_bound_to_deal = false;
@@ -56,16 +57,10 @@ let act : t_act =
 
 let create ?(num_players = 2) () =
   let open CCList in
-  let b : game =
-    {
-      boards = init num_players (fun _ -> Board.empty ());
-      decks = sublists_of_len 27 @@ Deck.create_random ();
-      estate_plans =
-        [
-          { claimaint_count = 0; establishments = [ 2; 2; 2; 2 ] };
-          { claimaint_count = 0; establishments = [ 3; 4; 5 ] };
-          { claimaint_count = 0; establishments = [ 4; 4; 1 ] };
-        ];
-    }
-  in
-  b
+  {
+    boards = init num_players (fun _ -> Board.empty ());
+    decks = sublists_of_len 27 @@ Deck.create_random ();
+    estate_plans = Plans.create_random ();
+  }
+
+let tick game = { game with decks = List.map Listext.rotate game.decks }

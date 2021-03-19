@@ -41,6 +41,7 @@ type game_error =
   | InvalidStreetIndex
   | InvalidHouseIndex
   | HouseAlreadyFilled
+  | InvalidHouseNumber
   | InvalidAction of string
 
 exception Game_error of game_error
@@ -56,3 +57,6 @@ type game = {
   decks : deck list;
   estate_plans : estate_plan list;
 }
+
+let in_range_or min max to_raise v =
+  if v >= min || v <= max then v else raise to_raise

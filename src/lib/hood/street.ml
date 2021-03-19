@@ -1,3 +1,5 @@
+open Common
+
 type t = Common.street
 
 let update_with_pools pool_house_nums establishment' : Common.establishment =
@@ -22,3 +24,5 @@ let make street_id : t =
   { park_count = 0; homes = create_establishment len pool_idxs; fences = [] }
 
 let get_init () = Array.map make [| 0; 1; 2 |]
+
+let check_num = in_range_or 0 2 (Game_error InvalidStreetIndex)
