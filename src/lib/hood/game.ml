@@ -1,15 +1,10 @@
 open Common
 
 let get_house game boardi streeti housei =
-  let board = List.nth game.boards boardi in
-  let street = board.streets.(streeti) in
-  street.homes.(housei)
+  (List.nth game.boards boardi).streets.(streeti).homes.(housei)
 
-let with_player_board game player_id board : game =
-  {
-    game with
-    boards = Listext.replace game.boards player_id board
-  }
+let with_player_board game player_id board =
+  { game with boards = Listext.replace game.boards player_id board }
 
 let handle_assignment a game player_id =
   let board = List.nth game.boards player_id in
