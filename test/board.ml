@@ -4,8 +4,5 @@ let test_empty_board () =
 
 let () =
   let open Alcotest in
-  run "Board" [
-      "creation", [
-          test_case "test_empty_board"     `Quick test_empty_board;
-        ];
-    ]
+  run "Board"
+    [ ("creation", [ test_case "test_empty_board" `Quick test_empty_board ]) ]

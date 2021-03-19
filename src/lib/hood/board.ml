@@ -11,8 +11,7 @@ let empty () : t =
       bpr = 0;
       temp_agency_usage_count = 0;
       real_estate_investment_counts = [| 0; 0; 0; 0; 0; 0 |];
-      estate_plan_claims = []
+      estate_plan_claims = [];
     }
   in
   b
-

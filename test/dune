@@ -1,5 +1,5 @@
 ; https://dune.readthedocs.io/en/stable/dune-files.html#tests
 
 (tests
- (names board game)
+ (names board deck game listext)
  (libraries alcotest hood))

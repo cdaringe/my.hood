@@ -15,7 +15,7 @@ type board = {
   bpr : int;
   temp_agency_usage_count : int;
   (* tuple: (plan index, 0 for first claimant,  n-1 for nth claimant *)
-  estate_plan_claims: (int * int) list;
+  estate_plan_claims : (int * int) list;
 }
 
 type fence = { street_num : int; house_num : int }
@@ -24,6 +24,7 @@ type effect =
   | PlaceFence of fence
   | InvestInEstablishmentSize of int (* establishment size *)
   | UseTempAgency of int (* adjustment value *)
+  | Bis
   | DevelopPark
   | DevelopPool
   | BPR
@@ -42,19 +43,16 @@ type game_error =
   | HouseAlreadyFilled
   | InvalidAction of string
 
-type card = {
-  num: int;
-  effect: effect;
-}
+exception Game_error of game_error
+
+type card = { num : int; effect : effect }
+
 type deck = card list
 
-type estate_plan = {
-  claimaint_count: int;
-  establishments: establishment list;
-}
+type estate_plan = { claimaint_count : int; establishments : int list }
 
 type game = {
-  boards: board list;
-  decks: deck list;
-  estate_plans: estate_plan list;
+  boards : board list;
+  decks : deck list;
+  estate_plans : estate_plan list;
 }
