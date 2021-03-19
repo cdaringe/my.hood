@@ -5,13 +5,10 @@ let get_house game boardi streeti housei =
   let street = board.streets.(streeti) in
   street.homes.(housei)
 
-let with_board game player_id board : game =
+let with_player_board game player_id board : game =
   {
     game with
-    boards =
-      List.mapi
-        (fun i board' -> if i = player_id then board else board')
-        game.boards;
+    boards = Listext.replace game.boards player_id board
   }
 
 let handle_assignment a game player_id =
@@ -35,7 +32,7 @@ let handle_assignment a game player_id =
       { street' with homes = Array.mapi maybe_update_house street'.homes }
     else street'
   in
-  with_board game player_id
+  with_player_board game player_id
     { board with streets = Array.mapi maybe_update_street board.streets }
 
 let handle_effect (eff : effect) (game : game) player_id =
