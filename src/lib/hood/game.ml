@@ -49,13 +49,13 @@ type t_act = game -> int -> action -> (game, game_error) result
 let act : t_act =
  fun game player_id { home_assignment; effect } ->
   try
-    (match (home_assignment, effect) with
+    ( match (home_assignment, effect) with
     | None, None -> raise (Game_error EmptyTurn)
     | Some a, None -> handle_assignment a game player_id
     | None, Some e -> handle_effect e game player_id
     | Some a, Some e ->
         handle_assignment a game player_id |> fun game' ->
-        handle_effect e game' player_id)
+        handle_effect e game' player_id )
     |> Result.ok
   with Game_error err -> Error err
 

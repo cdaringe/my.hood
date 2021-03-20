@@ -1,2 +1,5 @@
 _opam
 _build
+**/.merlin
+**/*.log
+**/*.js

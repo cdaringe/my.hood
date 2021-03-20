@@ -1,0 +1,29 @@
+diff --git a/node_modules/bs-platform/bsb b/node_modules/bs-platform/bsb
+index bfab087..7fbfd10 100755
+--- a/node_modules/bs-platform/bsb
++++ b/node_modules/bs-platform/bsb
+@@ -11,7 +11,7 @@ var child_process = require('child_process')
+ var os = require('os');
+ var path = require('path')
+ var bsconfig = 'bsconfig.json'
+-var bsb_exe = path.join(__dirname,process.platform,'bsb.exe')
++var bsb_exe = process.env.BSB_EXE || path.join(__dirname,process.platform,'bsb.exe')
+ 
+ var LAST_SUCCESS_BUILD_STAMP = 0
+ process.env.BSB_PROJECT_ROOT=process.cwd()
+@@ -94,11 +94,11 @@ function setUpWebSocket() {
+             // @ts-ignore
+             if(err !== undefined && err.code === "EADDRINUSE" ){
+                 var error = std_is_tty?`\x1b[1;31mERROR:\x1b[0m` : `ERROR:`
+-                console.error(`${error} The websocket port number ${webSocketPort} is in use. 
++                console.error(`${error} The websocket port number ${webSocketPort} is in use.
+ Please pick a different one using the \`-ws [host:]port\` flag from bsb.`)
+-            } else {            
+-                console.error(err)            
+-            }            
++            } else {
++                console.error(err)
++            }
+             process.exit(2)
+         })
+         .listen(webSocketPort, webSocketHost);
