@@ -1,0 +1,11 @@
+(executable
+ (name main)
+ (libraries js_of_ocaml ocaml-vdom core_kernel incr_dom)
+ (preprocess
+  (pps js_of_ocaml-ppx_deriving_json ppx_jane))
+ (modes js))
+
+(env
+ (dev
+  (flags
+   (:standard -w -39))))
