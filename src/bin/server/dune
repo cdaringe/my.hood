@@ -1,2 +1,10 @@
 (executable
- (name bin))
+ (name bin)
+ (libraries dream hood tyxml)
+ (preprocess
+  (pps ppx_deriving_yojson tyxml-ppx)))
+
+(rule
+ (alias run)
+ (action
+  (run ./bin.exe)))

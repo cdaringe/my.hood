@@ -2,7 +2,7 @@ import type { Task, Tasks } from "https://deno.land/x/rad/src/mod.ts";
 
 const buildS: string = `dune build @fmt --auto-promote`;
 const build: Task = buildS;
-const watch: Task = `${build} -w`;
+const watch: Task = `${build} -w @run`;
 const test: Task = `dune test`;
 const install: Task = `opam install dune && opam install . --deps-only --locked && dune build && opam install . --deps-only`;
 const exportSwitch: Task = `opam switch export ./switch`;
