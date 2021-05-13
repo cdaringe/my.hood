@@ -1,0 +1,5 @@
+(library
+ (name ui)
+ (libraries js_of_ocaml incr_dom)
+ (preprocess
+  (pps js_of_ocaml-ppx_deriving_json ppx_jane)))

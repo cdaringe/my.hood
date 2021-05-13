@@ -1,6 +1,7 @@
 (executable
  (name bin)
- (libraries dream hood tyxml)
+ (libraries dream hood tyxml ui js_of_ocaml incr_dom incr_dom.testing
+   virtual_dom virtual_dom.vdom_test_helpers)
  (preprocess
   (pps ppx_deriving_yojson tyxml-ppx)))
 

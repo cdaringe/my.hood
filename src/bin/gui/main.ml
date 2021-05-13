@@ -4,6 +4,6 @@ open! Js_of_ocaml
 
 let () =
   Start_app.start
-    (module App)
+    (module Ui)
     ~bind_to_element_with_id:"app"
-    ~initial_model:(App.initial_model_exn [ (0, 13) ])
+    ~initial_model:(Ui.initial_model_exn [ (0, 9) ])

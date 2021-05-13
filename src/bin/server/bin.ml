@@ -56,6 +56,26 @@ let game = Hood.Game.create ~num_players:2 ()
 let handle_game _request =
   render game |> render_page |> Format.asprintf "%a" (pp ()) |> Dream.html
 
+let create_game_renderer model' =
+  let open Incr_dom_testing in
+  let driver =
+    Driver.create
+      ~initial_model:(Ui.initial_model_exn model')
+      ~sexp_of_model:Ui.Model.sexp_of_t ~initial_state:()
+      (module Ui)
+  in
+  Helpers.make driver
+
+(* let render_game _request =
+  let open Vdom_helpers in
+  let (module R) = create_game_renderer [] in
+  Dream.html @@ Node_helpers.to_string_html @@ Incr_dom_testing.Driver. *)
+
+let render_game _request =
+  let m = Ui.initial_model_exn [] in
+  let view = Ui.view m ~inject:(fun _ -> Ui_event.Ignore) in
+  Virtual_dom.Vdom.Node.to_dom view
+
 let handle_404 _request = Dream.redirect "/"
 
 let () =

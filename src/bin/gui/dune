@@ -1,6 +1,6 @@
 (executable
  (name main)
- (libraries js_of_ocaml ocaml-vdom core_kernel incr_dom)
+ (libraries js_of_ocaml ui)
  (preprocess
   (pps js_of_ocaml-ppx_deriving_json ppx_jane))
  (modes js))
