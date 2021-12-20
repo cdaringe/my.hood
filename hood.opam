@@ -8,19 +8,16 @@ license: "ISC"
 homepage: "https://github.com/cdaringe/my.hood"
 bug-reports: "https://github.com/cdaringe/my.hood/issues"
 depends: [
-  # ... hmmm ... all gui mode, or native game mode?
-  "alcotest" {with-test}
-
-  # build
-  "dune" {>= "2.8" & with-test}
-
-  # run
-  "containers" {>= "3.5"}
+  # build & run
+  "dune" {>= "2.8"}
+  "containers" {>= "3.6"}
   "yojson"
   "ppx_deriving"
   "ppx_yojson_conv"
 
-  # dev
+  # dev & test
+  "alcotest" {with-test}
+  "opam-dune-lint" {with-test}
   "ocaml-lsp-server" {with-test}
   "ocamlformat-rpc" {with-test}
   "ocamlformat" {with-test}
