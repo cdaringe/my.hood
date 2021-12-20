@@ -30,7 +30,7 @@ let handle_assignment a game player_id =
   with_player_board game player_id
     { board with streets = Array.mapi maybe_update_street board.streets }
 
-let handle_effect (eff : effect) (game : game) player_id =
+let handle_effect home_assignment (eff : effect) (game : game) player_id =
   let board = List.nth game.boards player_id in
   let board' =
     match eff with
@@ -38,8 +38,10 @@ let handle_effect (eff : effect) (game : game) player_id =
     | InvestInEstablishmentSize size -> Board.invest board size
     | UseTempAgency _num_adjust -> board
     | Bis -> board
-    | DevelopPark -> board
-    | DevelopPool -> board
+    | DevelopPark street_id -> Board.add_park street_id board
+    | DevelopPool ->
+        let { street_num; house_num; _ } = Option.get home_assignment in
+        Board.add_pool street_num house_num board
     | BPR -> board
   in
   { game with boards = Listext.replace game.boards player_id board' }
@@ -49,13 +51,13 @@ type t_act = game -> int -> action -> (game, game_error) result
 let act : t_act =
  fun game player_id { home_assignment; effect } ->
   try
-    ( match (home_assignment, effect) with
+    (match (home_assignment, effect) with
     | None, None -> raise (Game_error EmptyTurn)
     | Some a, None -> handle_assignment a game player_id
-    | None, Some e -> handle_effect e game player_id
+    | None, Some e -> handle_effect home_assignment e game player_id
     | Some a, Some e ->
         handle_assignment a game player_id |> fun game' ->
-        handle_effect e game' player_id )
+        handle_effect home_assignment e game' player_id)
     |> Result.ok
   with Game_error err -> Error err
 

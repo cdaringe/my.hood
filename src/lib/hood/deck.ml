@@ -107,7 +107,7 @@ let with_effects numbers_deck =
   |> assign_effect common_effect_cards (UseTempAgency 0)
   |> assign_effect common_effect_cards Bis
   |> assign_effect fence_cards (PlaceFence { street_num = 0; house_num = 0 })
-  |> assign_effect parks_n_re_cards DevelopPark
+  |> assign_effect parks_n_re_cards (DevelopPark 0)
   |> assign_effect parks_n_re_cards (InvestInEstablishmentSize 0)
   |> fun (assigned, unassigned) ->
   let num_unassigned = List.length unassigned in

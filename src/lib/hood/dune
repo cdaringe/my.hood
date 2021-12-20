@@ -1,3 +1,5 @@
 (library
  (name hood)
- (libraries containers))
+ (libraries containers)
+ (preprocess (pps ppx_deriving.show ppx_yojson_conv))
+ )

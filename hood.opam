@@ -8,16 +8,35 @@ license: "ISC"
 homepage: "https://github.com/cdaringe/my.hood"
 bug-reports: "https://github.com/cdaringe/my.hood/issues"
 depends: [
-  "alcotest" {dev}
-  "containers" {>= "3"}
-  "dune" {>= "2.7" & build | dev}
-  "ocaml" {>= "4.11.0"}
-  "ocaml-lsp-server" {dev}
-  "ocamlformat" {dev}
+  # ... hmmm ... all gui mode, or native game mode?
+  "alcotest" {with-test}
+
+  # build
+  "dune" {>= "2.8" & with-test}
+
+  # run
+  "containers" {>= "3.5"}
+  "yojson"
+  "ppx_deriving"
+  "ppx_yojson_conv"
+
+  # dev
+  "ocaml-lsp-server" {with-test}
+  "ocamlformat-rpc" {with-test}
+  "ocamlformat" {with-test}
+  
+  # gui
+  "js_of_ocaml" {with-doc}
+  "js_of_ocaml-ppx" {with-doc}
+  "dream" {with-doc}
+  "dream-livereload" {with-doc}
+  "irmin-watcher" {with-doc}
+
+  # docs
   "odoc" {with-doc}
 ]
 build: [
-  ["dune" "subst"] {dev}
+  ["dune" "subst"] {with-test}
   [
     "dune"
     "build"

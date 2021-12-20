@@ -3,3 +3,5 @@ _build
 **/.merlin
 **/*.log
 **/*.js
+dist
+.parcel-cache

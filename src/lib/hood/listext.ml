@@ -1,5 +1,5 @@
-(* Given needles and haystack lists, extract needles elements from haystack.
-  Produce (successfully_extracted, unsuccessfully_extracted, remaining_haystack) *)
+(* Given needles and a haystack, extract needles elements from haystack.
+   Produce (successfully_extracted, unsuccessfully_extracted, remaining_haystack) *)
 let extract needles haystack =
   let open CCList in
   let f (extracted, needles', haystack') curr =
