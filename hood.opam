@@ -9,11 +9,11 @@ homepage: "https://github.com/cdaringe/my.hood"
 bug-reports: "https://github.com/cdaringe/my.hood/issues"
 depends: [
   # build & run
-  "dune" {>= "2.8"}
-  "containers" {>= "3.6"}
   "yojson"
   "ppx_deriving"
   "ppx_yojson_conv"
+  "dune" {>= "2.8"}
+  "containers" {>= "3.6"}
 
   # dev & test
   "alcotest" {with-test}
