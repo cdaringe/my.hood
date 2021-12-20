@@ -44,7 +44,7 @@ let invest board size =
   let points = levels.(size) in
   let curr_idx, _ =
     CCArray.find_idx (Int.equal points) investment_levels.(size)
-    |> CCOpt.get_exn_or ""
+    |> CCOption.get_exn_or ""
   in
   {
     board with

@@ -7,11 +7,8 @@ let action_assign_first_house_value : action =
     effect = None;
   }
 
-  let action_place_park : action =
-    {
-      home_assignment = None;
-      effect = Some (DevelopPark 0);
-    }
+let action_place_park : action =
+  { home_assignment = None; effect = Some (DevelopPark 0) }
 
 let test_empty_game () =
   let game = create () in
@@ -33,7 +30,7 @@ let test_action_valid_place () =
   Alcotest.(check bool) "no action errors" true (Result.is_ok res);
   Alcotest.(check int)
     "home value assigned" 2
-    (CCOpt.get_exn_or "missing num" house.num)
+    (CCOption.get_exn_or "missing num" house.num)
 
 let test_action_invalid_place_alread_filled () =
   let game = create () in
@@ -48,7 +45,6 @@ let test_action_place_parks () =
   let game3 = act game2 0 action_place_park |> CCResult.get_exn in
   let err = act game3 0 action_place_park |> Result.get_error in
   Alcotest.(check bool) "house already filled" true (TooManyParks = err)
- 
 
 let () =
   let open Alcotest in
