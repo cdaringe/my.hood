@@ -21,13 +21,13 @@ depends: [
   "ocaml-lsp-server" {with-test}
   "ocamlformat-rpc" {with-test}
   "ocamlformat" {with-test}
-  
+
   # gui
-  "js_of_ocaml" {with-doc}
-  "js_of_ocaml-ppx" {with-doc}
-  "dream" {with-doc}
-  "dream-livereload" {with-doc}
-  "irmin-watcher" {with-doc}
+  "js_of_ocaml"
+  "js_of_ocaml-ppx"
+  "dream"
+  "dream-livereload"
+  "irmin-watcher"
 
   # docs
   "odoc" {with-doc}
