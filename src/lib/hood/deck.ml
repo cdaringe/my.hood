@@ -114,5 +114,4 @@ let with_effects numbers_deck =
   if num_unassigned > 0 then failwith "cards are unassigned" else assigned
 
 let create () = empty_numbers () |> with_effects
-
 let create_random () = create () |> Listext.shuffle

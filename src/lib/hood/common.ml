@@ -58,7 +58,6 @@ type game_error =
 exception Game_error of game_error
 
 type card = { num : int; effect : effect } [@@deriving show, yojson]
-
 type deck = card list [@@deriving show, yojson]
 
 type estate_plan = { claimaint_count : int; establishments : int list }

@@ -9,5 +9,4 @@ let empty () : t =
   h
 
 let with_pool (h : t) : t = { h with has_pool = true }
-
 let check_num = in_range_or 1 16 (Game_error InvalidHouseNumber)

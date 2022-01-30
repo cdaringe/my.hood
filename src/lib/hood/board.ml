@@ -3,7 +3,6 @@ open Common
 type t = Common.board
 
 let max_parks_by_street_index = [| 3; 4; 5 |]
-
 let ( >>= ) = Result.bind
 
 let investment_levels =
